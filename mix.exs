@@ -45,10 +45,10 @@ defmodule EctoContext.MixProject do
     [
       {:ecto_sql, "~> 3.0"},
       # Test only
+      {:ecto_sqlite3, ">= 0.0.0"},
       {:credo, "~> 1.0", only: :test},
       {:excoveralls, "~> 0.12.0", only: :test},
-      {:mix_test_watch, "~> 1.0", only: :test},
-      {:postgrex, ">= 0.0.0", only: :test}
+      {:mix_test_watch, "~> 1.0", only: :test}
     ]
   end
 
