@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 config :ecto_context, ecto_repos: [EctoContext.Test.Repo]
 
