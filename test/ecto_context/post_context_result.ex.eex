@@ -2,8 +2,10 @@
   Returns the list of posts.
   """
   def list(opts \\ []) do
+    limit = opts[:limit] || -1
+
     Elixir.EctoContext.Test.Posts.Post
-    |> Ecto.Query.from(order_by: ^opts[:order_by], limit: ^opts[:limit])
+    |> Ecto.Query.from(order_by: ^opts[:order_by], limit: ^limit)
     |> Elixir.EctoContext.Test.Repo.all()
     |> Elixir.EctoContext.Test.Repo.preload(opts[:preload] || [])
   end
@@ -12,9 +14,11 @@
   Returns the list of posts for user.
   """
   def list_for_user(%{id: user_id}, opts \\ []) do
+    limit = opts[:limit] || -1
+
     Elixir.EctoContext.Test.Posts.Post
     |> Ecto.Query.where(user_id: ^user_id)
-    |> Ecto.Query.from(order_by: ^opts[:order_by], limit: ^opts[:limit])
+    |> Ecto.Query.from(order_by: ^opts[:order_by], limit: ^limit)
     |> Elixir.EctoContext.Test.Repo.all()
     |> Elixir.EctoContext.Test.Repo.preload(opts[:preload] || [])
   end

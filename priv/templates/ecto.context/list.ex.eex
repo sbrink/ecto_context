@@ -2,8 +2,10 @@
   Returns the list of <%= @schema.plural %>.
   """
   def list(opts \\ []) do
+    limit = opts[:limit] || -1
+
     <%= @schema.module %>
-    |> Ecto.Query.from(order_by: ^opts[:order_by], limit: ^opts[:limit])
+    |> Ecto.Query.from(order_by: ^opts[:order_by], limit: ^limit)
     |> <%= @schema.repo %>.all()
     |> <%= @schema.repo %>.preload(opts[:preload] || [])
   end
@@ -12,9 +14,11 @@
   Returns the list of <%= @schema.plural %> for <%= assoc.field %>.
   """
   def list_for_<%= assoc.field %>(%{id: <%= assoc.field %>_id}, opts \\ []) do
+    limit = opts[:limit] || -1
+
     <%= @schema.module %>
     |> Ecto.Query.where(<%= assoc.field %>_id: ^<%= assoc.field %>_id)
-    |> Ecto.Query.from(order_by: ^opts[:order_by], limit: ^opts[:limit])
+    |> Ecto.Query.from(order_by: ^opts[:order_by], limit: ^limit)
     |> <%= @schema.repo %>.all()
     |> <%= @schema.repo %>.preload(opts[:preload] || [])
   end
